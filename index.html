@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#fff8ec">
+<title>主語・述語・修飾語をみつけよう</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
 
+  <!-- ===== ホーム ===== -->
+  <section id="home" class="screen active">
+    <header class="home-head">
+      <h1><ruby>主語<rt>しゅご</rt></ruby>・<ruby>述語<rt>じゅつご</rt></ruby>・<ruby>修飾語<rt>しゅうしょくご</rt></ruby>を みつけよう</h1>
+      <p class="sub">ことばの やくわりを しらべよう</p>
+      <div class="legend">
+        <span class="tag s"><ruby>主語<rt>しゅご</rt></ruby></span><small>だれが・なにが</small>
+        <span class="tag p"><ruby>述語<rt>じゅつご</rt></ruby></span><small>どうする・どんなだ・なんだ</small>
+        <span class="tag m"><ruby>修飾語<rt>しゅうしょくご</rt></ruby></span><small>くわしく する ことば</small>
+      </div>
+      <button class="learn-btn" type="button" data-go="learn">📖 まなぼう（せつめいを みる）</button>
+    </header>
+
+    <div class="stages">
+      <article class="stage st1">
+        <div class="stage-no">ステップ 1</div>
+        <h2>みじかい <ruby>文<rt>ぶん</rt></ruby>（3つの ことば）</h2>
+        <p>こたろう・ここな・けんた・はるき・ひなたの <ruby>文<rt>ぶん</rt></ruby>で、ことばを なかま わけ しよう。</p>
+        <button class="start" type="button" data-mode="short">はじめる ▶</button>
+      </article>
+
+      <article class="stage st2">
+        <div class="stage-no">ステップ 2</div>
+        <h2>ながい <ruby>文<rt>ぶん</rt></ruby></h2>
+        <p>ことばが ふえた <ruby>文<rt>ぶん</rt></ruby>で、<ruby>主語<rt>しゅご</rt></ruby>・<ruby>述語<rt>じゅつご</rt></ruby>・<ruby>修飾語<rt>しゅうしょくご</rt></ruby>を わけよう。</p>
+        <button class="start" type="button" data-mode="long">はじめる ▶</button>
+      </article>
+
+      <article class="stage st3">
+        <div class="stage-no">ステップ 3</div>
+        <h2>ものがたりから ぬきだそう</h2>
+        <div class="opt-row">
+          <span class="opt-label">おはなし</span>
+          <div class="seg" id="storySeg"></div>
+        </div>
+        <div class="opt-row">
+          <span class="opt-label">さがす ことば</span>
+          <div class="seg" id="findSeg">
+            <button type="button" data-v="SP"><ruby>主語<rt>しゅご</rt></ruby>・<ruby>述語<rt>じゅつご</rt></ruby></button>
+            <button type="button" data-v="SPM">＋<ruby>修飾語<rt>しゅうしょくご</rt></ruby>も</button>
+          </div>
+        </div>
+        <button class="start" type="button" data-mode="story">はじめる ▶</button>
+      </article>
+
+      <article class="stage st4">
+        <div class="stage-no">ステップ 4</div>
+        <h2>おうよう もんだい</h2>
+        <div class="apply-grid">
+          <button class="apply-btn" type="button" data-type="order">🔀 ならべかえて<br><ruby>文<rt>ぶん</rt></ruby>を つくろう</button>
+          <button class="apply-btn" type="button" data-type="target">🔍 どの ことばを<br>くわしく している？</button>
+          <button class="apply-btn" type="button" data-type="hidden">🕵️ かくれた<br><ruby>主語<rt>しゅご</rt></ruby>を さがそう</button>
+          <button class="apply-btn" type="button" data-type="blank">✏️ あなうめ<br>（　）に いれよう</button>
+          <button class="apply-btn mix" type="button" data-type="mix">🎲 ミックス<br>（ぜんぶ まぜる）</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="settings">
+      <h3>⚙️ せってい</h3>
+      <div class="opt-row">
+        <span class="opt-label">もんだいの かず</span>
+        <div class="seg" id="countSeg">
+          <button type="button" data-v="5">5もん</button>
+          <button type="button" data-v="10">10もん</button>
+          <button type="button" data-v="0">ぜんぶ</button>
+        </div>
+      </div>
+      <div class="toggles">
+        <label><input type="checkbox" id="tgFuri"> ふりがな</label>
+        <label><input type="checkbox" id="tgVoice"> じどう よみあげ</label>
+        <label><input type="checkbox" id="tgSound"> こうかおん</label>
+        <label><input type="checkbox" id="tgHint"> ヒント</label>
+      </div>
+      <p class="note">ステップ3は、えらんだ おはなしの <ruby>文<rt>ぶん</rt></ruby>を ぜんぶ じゅんばんに だします。</p>
+    </div>
+  </section>
+
+  <!-- ===== まなぼう ===== -->
+  <section id="learn" class="screen">
+    <div class="topbar"><button class="icon-btn" type="button" data-go="home">🏠 もどる</button><div class="qtitle">まなぼう</div><div></div></div>
+
+    <div class="learn-card s">
+      <h2><span class="tag s"><ruby>主語<rt>しゅご</rt></ruby></span>「だれが」「なにが」</h2>
+      <p><ruby>文<rt>ぶん</rt></ruby>の なかで「だれが」「なにが」に あたる ことば。<br>「〜が」「〜は」「〜も」が つくことが おおいよ。</p>
+      <p class="ex"><b class="cs">こたろうが</b> はしる。　<b class="cs">はなが</b> さく。　<b class="cs">いぬも</b> きました。</p>
+      <button class="say-btn" type="button" data-say="こたろうが はしる。はなが さく。いぬも きました。">🔊</button>
+    </div>
+
+    <div class="learn-card p">
+      <h2><span class="tag p"><ruby>述語<rt>じゅつご</rt></ruby></span>「どうする」「どんなだ」「なんだ」</h2>
+      <p><ruby>主語<rt>しゅご</rt></ruby>が「どうする」「どんなだ」「なんだ」を あらわす ことば。<br><ruby>文<rt>ぶん</rt></ruby>の さいごに あることが おおいよ。</p>
+      <p class="ex">こたろうが <b class="cp">はしる</b>。（どうする）<br>ひなたの えは <b class="cp">きれいだ</b>。（どんなだ）<br>かぐやひめは <b class="cp">ひとでした</b>。（なんだ）</p>
+      <button class="say-btn" type="button" data-say="こたろうが はしる。ひなたの えは きれいだ。かぐやひめは ひとでした。">🔊</button>
+    </div>
+
+    <div class="learn-card m">
+      <h2><span class="tag m"><ruby>修飾語<rt>しゅうしょくご</rt></ruby></span>くわしく する ことば</h2>
+      <p>ほかの ことばを くわしく する ことば。<br>「いつ」「どこで」「なにを」「どのように」「どんな」を あらわすよ。</p>
+      <p class="ex">こたろうが <b class="cm">はやく</b> → はしる。<br><b class="cm">あかい</b> → ふうせん</p>
+      <button class="say-btn" type="button" data-say="こたろうが はやく はしる。あかい ふうせん。">🔊</button>
+    </div>
+
+    <div class="learn-card all">
+      <h2>れい：ぜんぶ いれると…</h2>
+      <div class="ex-sentence">
+        <span class="xc s">ここなが<i><ruby>主語<rt>しゅご</rt></ruby></i></span>
+        <span class="xc m">きょう<i><ruby>修飾語<rt>しゅうしょくご</rt></ruby></i></span>
+        <span class="xc m">としょかんで<i><ruby>修飾語<rt>しゅうしょくご</rt></ruby></i></span>
+        <span class="xc m">ほんを<i><ruby>修飾語<rt>しゅうしょくご</rt></ruby></i></span>
+        <span class="xc p">よむ。<i><ruby>述語<rt>じゅつご</rt></ruby></i></span>
+      </div>
+      <p>「いつ？」→ きょう　「どこで？」→ としょかんで　「なにを？」→ ほんを</p>
+      <button class="say-btn" type="button" data-say="ここなが きょう としょかんで ほんを よむ。">🔊</button>
+    </div>
+  </section>
+
+  <!-- ===== もんだい ===== -->
+  <section id="quiz" class="screen">
+    <div class="topbar">
+      <button class="icon-btn" type="button" id="quitBtn">🏠 おわる</button>
+      <div class="qtitle" id="qTitle"></div>
+      <div class="qinfo"><span id="progress"></span><span id="scoreNow"></span></div>
+    </div>
+    <div id="qArea"></div>
+  </section>
+
+  <!-- ===== けっか ===== -->
+  <section id="result" class="screen">
+    <div class="result-card">
+      <h2>けっか</h2>
+      <div id="resultBody"></div>
+      <div class="ctrl">
+        <button class="sub-btn" type="button" id="homeBtn">🏠 ホームへ</button>
+        <button class="main-btn" type="button" id="retryBtn">🔁 もういちど</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
