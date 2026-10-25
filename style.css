@@ -18,7 +18,7 @@ button{font-family:inherit;cursor:pointer;touch-action:manipulation;color:inheri
 rt{font-size:.5em;color:#777;font-weight:normal}
 body.no-furi rt{display:none}
 
-#app{max-width:1000px;margin:0 auto;padding:16px 16px 48px}
+#app{max-width:1000px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(48px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left))}
 .screen{display:none}
 .screen.active{display:block;animation:fade .25s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -67,6 +67,8 @@ body.no-furi rt{display:none}
 .toggles{display:flex;flex-wrap:wrap;gap:10px 24px}
 .toggles label{display:flex;align-items:center;gap:6px;font-size:20px}
 .toggles input{width:26px;height:26px;accent-color:var(--accent)}
+.offline-status{font-size:16px;margin:12px 0 0;padding:6px 12px;border-radius:10px;background:#f3ead9;color:var(--sub)}
+.offline-status.ok{background:#e3f5e9;color:#1f6b3d;font-weight:bold}
 .note{font-size:15px;color:var(--sub);margin:10px 0 0}
 
 /* ---------- トップバー ---------- */
